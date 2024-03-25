@@ -5,6 +5,10 @@
     align-items:center;
     margin: 10% auto;
   }
+.canvas{
+color: #ff0000
+    
+}
   .status {
       text-align: center;
       color: #135784;
