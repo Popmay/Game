@@ -43,7 +43,7 @@
         function makeMove(event) {
             if(!disableBoard) {
                 event.target.innerHTML = current;
-                current=current === 'O'? 'X':'O';
+                current=current === 'You'? 'Goblin':'You';
                 currentBoardValues = Array.from(document.getElementsByClassName("block")).map(item => {
                     return item.innerHTML;
                 })
