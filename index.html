@@ -1,75 +1,29 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WASM Demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="style.css" rel="stylesheet" type="text/css" /> 
-</head>
-    
-<body>
-    <div class="parent-container">
-        <div class="container">
-          <div class="block" onclick="makeMove(event)" disabled></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-          <div class="block" onclick="makeMove(event)"></div>
-        </div>
-         <h2 id="game-status" class="status"></h2>
-        <button class="reset-btn" onclick="resetGame()">Reset Game</button>
-      </div>
-      
-      <script>
-        let current='X'
-        var disableBoard = false;
-        var currentBoardValues = []
-        var BoardValues = {0:[],1:[],2:[]}
-        var movesPendingLabel = '';
-        var emptyBlock = '';
-        var noWinnerLabel = 'TIE'
-
-        var Module = {
-          onRuntimeInitialized: function() {
-            Module.tic_tac_toe()
-          }
-        };
-
-        function makeMove(event) {
-            if(!disableBoard) {
-                event.target.innerHTML = current;
-                current=current === 'You'? 'Goblin':'You';
-                currentBoardValues = Array.from(document.getElementsByClassName("block")).map(item => {
-                    return item.innerHTML;
-                })
-                BoardValues = {
-                    0: currentBoardValues.slice(0,3),
-                    1: currentBoardValues.slice(3,6),
-                    2: currentBoardValues.slice(6,9)
-                };
-                var result = Module.tic_tac_toe()
-                if(result == 'X' || result == 'O') {
-                    disableBoard = true
-                    document.getElementById("game-status").innerHTML = `${result} WON`
-                } else {
-                    document.getElementById("game-status").innerHTML = result
-                }
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
+        <title>Game</title>
+        <style>
+            .fullwindow {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                margin: 0px;
+                border: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: block;
             }
-        }
-        
-        // Reset Game function
-        function resetGame() {
-            disableBoard = false
-           location.reload()
-        }
-          
-      </script>
-      <script src="tic_tac_toe.js"></script>
-</body>
+        </style>
+    </head>
+    <body style="background-color: #FFFFFF;">
+        <canvas class = "fullwindow" id="canvas" oncontextmenu="event.preventDefault()"/>
+        <script type="text/javascript">
+            var Module = {};
+            Module.canvas = document.getElementById('canvas');
+        </script>
+        <script async type="text/javascript" src="./hello_triangle.js"></script>
+    </body>
 </html>
-
