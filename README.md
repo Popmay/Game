@@ -3,3 +3,5 @@ The Game Will be a adventure RPG where you move a a grid and fight monsters usin
 ## Mock Up
 ! [MockUP](https://github.com/Popmay/Game/blob/21246e54bb62b856940adaff17d264294d70b052/img/Untitled%20drawing.jpg)
 currently there are feutrues without graphics but with SLD2 graphcis are very difficult
+
+needs SDL2 libary and there is the compilaion line in MakeFile
